@@ -1677,6 +1677,22 @@
 
 
 % 定义用户接口：
+% 封面信息行由用户配置，行标签和内容都可以自定义。
+\newlength\sysu@cover@label@width
+\newlength\sysu@cover@value@width
+\newcommand\sysucoverrow[2]{%
+  \makebox[\sysu@cover@label@width][s]{#1}%
+  &\makebox[\sysu@cover@value@width]{\hfill#2\hfill}\\
+  \cline{2-2}%
+}
+\newcommand\sysu@cover@heading@display{%
+  \ifx\sysu@cover@heading\@empty
+    \sysu@thesis@name
+  \else
+    \sysu@cover@heading
+  \fi
+}
+
 \sysu@define@key{
   title = {
     default = {论文题目},
@@ -1684,6 +1700,9 @@
   title* = {
     default = {Title},
     name    = title@en,
+  },
+  cover-heading = {
+    name = cover@heading,
   },
   author = {
     default = {作者姓名},
@@ -1750,6 +1769,16 @@
   	name     = keywords@fr,
   },
 }
+
+% 默认行保持原本科封面内容；用户可用 cover-items 完整替换或清空。
+\newcommand\sysu@cover@items{%
+  \sysucoverrow{姓名}{\sysu@author}%
+  \sysucoverrow{学号}{\sysu@student@id}%
+  \sysucoverrow{院系}{\sysu@department}%
+  \sysucoverrow{专业}{\sysu@speciality}%
+  \sysucoverrow{指导教师}{\sysu@supervisor@names}%
+}
+\kv@define@key{sysu}{cover-items}{\def\sysu@cover@items{#1}}
 
 % 导师一栏可能有多个姓名，所以用 \opt{supervisor} 进行收集，
 % 然后使用本命令来输出要求的格式，
@@ -1970,7 +1999,7 @@
     \vskip 0.5cm%
     \includegraphics[width=3cm]{\sysu@logo@path/sysu-logo.pdf}
     \vskip 1.2cm%
-      {\zihao{-0}\textcolor{sysugreen}{\rmfamily\textbf{\ \sysu@thesis@name}}}
+      {\zihao{-0}\textcolor{sysugreen}{\rmfamily\textbf{\ \sysu@cover@heading@display}}}
     \vspace{\baselineskip}
     
     % 做分割线
@@ -2004,13 +2033,10 @@
     \renewcommand{\arraystretch}{2}
   % \setlength\arrayrulewidth{1.4pt}
     \fontsize{15}{24}\heiti\selectfont
+    \setlength\sysu@cover@label@width{2.2cm}%
+    \setlength\sysu@cover@value@width{8cm}%
     \begin{tabular}{cc}
-	   % [s] 两端对齐
-	    \makebox[2.2cm][s]{姓名}     & \makebox[8cm]{\hfill\sysu@author\hfill}   \\ \cline{2-2}
-	    \makebox[2.2cm][s]{学号}     & \makebox[8cm]{\hfill\sysu@student@id\hfill} \\ \cline{2-2}
-	    \makebox[2.2cm][s]{院系}     & \makebox[8cm]{\hfill\sysu@department\hfill}   \\ \cline{2-2}
-	    \makebox[2.2cm][s]{专业}     & \makebox[8cm]{\hfill\sysu@speciality\hfill}    \\ \cline{2-2}
-	    \makebox[2.2cm][s]{指导教师} & \makebox[8cm]{\hfill\sysu@supervisor@names\hfill}   \\ \cline{2-2}
+	    \sysu@cover@items
 	\end{tabular}
     \\
     \ \vskip 0.3cm
@@ -2039,15 +2065,12 @@
     \ \vskip 1.8cm%
     \ \\
   {
-  	\renewcommand{\arraystretch}{1.6}
+    \renewcommand{\arraystretch}{1.6}
     \fontsize{15}{28}\heiti\selectfont
+    \setlength\sysu@cover@label@width{2.3cm}%
+    \setlength\sysu@cover@value@width{8.5cm}%
     \begin{tabular}{cc}
-    	% [s] 两端对齐
-    	\makebox[2.3cm][s]{姓名}     & \makebox[8.5cm]{\hfill\sysu@author\hfill}   \\ \cline{2-2}
-    	\makebox[2.3cm][s]{学号}     & \makebox[8.5cm]{\hfill\sysu@student@id\hfill} \\ \cline{2-2}
-    	\makebox[2.3cm][s]{院系}     & \makebox[8.5cm]{\hfill\sysu@department\hfill}   \\ \cline{2-2}
-    	\makebox[2.3cm][s]{专业}     & \makebox[8.5cm]{\hfill\sysu@speciality\hfill}    \\ \cline{2-2}
-    	\makebox[2.3cm][s]{指导教师} & \makebox[8.5cm]{\hfill\sysu@supervisor@names\hfill}   \\ \cline{2-2}
+      \sysu@cover@items
     \end{tabular}
   }
     \ \vskip 1cm%

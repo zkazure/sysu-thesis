@@ -392,7 +392,9 @@ key-value 的方式填写，如：
     命令               & 命令（英文）        & 说明          \\
     \midrule
     \opt{title}        & \opt{title*}        & 论文标题      \\
+    \opt{cover-heading} & -                  & 本科封面顶部标题 \\
     \opt{author}       & \opt{author*}       & 作者姓名      \\
+    \opt{cover-items}  & -                   & 自定义本科封面/扉页信息行 \\
     \opt{speciality}   & \opt{speciality*}   & 学科专业      \\
     \opt{supervisor}   & \opt{supervisor*}   & 导师      \\
     \opt{practice-supervisor} & \opt{practice-supervisor*} & 实践导师 \\
@@ -409,7 +411,26 @@ key-value 的方式填写，如：
   \item 其中带 |*| 后缀的选项用于设置英文封面。
   \item 导师姓名 \opt{supervisor} 允许多个姓名，使用“,”（西文逗号 U+002C）隔开。
   \item 完成时间 \opt{date} 应使用 ISO 格式（yyyy-mm-dd），默认为当前日期。
+  \item \opt{cover-items} 用于配置本科封面和扉页上的信息行。默认值为姓名、学号、院系、专业和指导教师；设置该项会替换全部默认行。
+    每行使用 \cs{sysucoverrow}\marg{行名}\marg{内容} 添加，省略某行即可删除；设置为空可移除所有信息行。
+    此配置不影响研究生/博士封面。
+  \item \opt{cover-heading} 用于修改本科封面校徽下方的绿色标题；留空时仍使用学位类型对应的默认标题。
 \end{itemize}
+
+例如，课程作业可以自定义为课程名、学生姓名和任课教师：
+\begin{latex}
+  \sysusetup{
+    cover-heading = {课程作业论文},
+    cover-items = {
+      \sysucoverrow{课程名称}{课程论文写作}
+      \sysucoverrow{姓名}{王小明}
+      \sysucoverrow{学号}{12350004}
+      \sysucoverrow{任课教师}{王老师}
+    },
+  }
+\end{latex}
+要恢复默认行，删除 \opt{cover-items} 配置即可；要隐藏所有信息行，则设置
+\verb|cover-items = {}|。课程作业仍可沿用模板现有的摘要、目录、章节和参考文献结构。
 
 \DescribeMacro{\copyrightpage}
 声明页由 \cs{copyrightpage} 命令生成。模板会根据 \opt{secret-level} 和
