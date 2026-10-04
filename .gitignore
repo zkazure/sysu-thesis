@@ -2,6 +2,7 @@ main.pdf
 sysuthesis-guide.pdf
 pre.pdf
 *.hd
+plan.md
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
