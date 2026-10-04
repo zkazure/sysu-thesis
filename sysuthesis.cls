@@ -713,19 +713,19 @@
   \ifsysu@system@windows
     \sysusetup{fontset = windows}
   \else
-    \IfFontExistsTF{SimSun}{
-      \sysusetup{fontset = windows}
-    }{
-      \ifsysu@system@mac
-        \sysusetup{fontset = mac}
-      \else
-        \IfFontExistsTF{Noto Serif CJK SC}{
-          \sysusetup{fontset = ubuntu}
+    \ifsysu@system@mac
+      \sysusetup{fontset = mac}
+    \else
+      \IfFontExistsTF{Noto Serif CJK SC}{
+        \sysusetup{fontset = ubuntu}
+      }{
+        \IfFontExistsTF{SimSun}{
+          \sysusetup{fontset = windows}
         }{
           \sysusetup{fontset = fandol}
         }
-      \fi
-    }
+      }
+    \fi
   \fi
 \fi
 
@@ -1029,26 +1029,24 @@
 \newcommand\sysu@set@cjk@font@noto{%
   \defaultCJKfontfeatures{}%
   \setCJKmainfont{Noto Serif CJK SC}[
-    UprightFont    = * Light,
     BoldFont       = * Bold,
     ItalicFont     = FandolKai-Regular,
     ItalicFeatures = {Extension = .otf},
     Script         = CJK,
   ]%
   \setCJKsansfont{Noto Sans CJK SC}[
-    BoldFont       = * Medium,
+    BoldFont       = * Bold,
     Script         = CJK,
   ]%
   \setCJKmonofont{Noto Sans Mono CJK SC}[
     Script         = CJK,
   ]%
   \setCJKfamilyfont{zhsong}{Noto Serif CJK SC}[
-    UprightFont    = * Light,
-    UprightFont    = * Bold,
+    BoldFont       = * Bold,
     Script         = CJK,
   ]%
   \setCJKfamilyfont{zhhei}{Noto Sans CJK SC}[
-    BoldFont       = * Medium,
+    BoldFont       = * Bold,
     Script         = CJK,
   ]%
   \setCJKfamilyfont{zhfs}{FandolFang}[
