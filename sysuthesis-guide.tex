@@ -393,6 +393,7 @@ key-value 的方式填写，如：
     \midrule
     \opt{title}        & \opt{title*}        & 论文标题      \\
     \opt{cover-heading} & -                  & 本科封面顶部标题 \\
+    \opt{course-paper} & -                   & 仅生成一个课程论文封面 \\
     \opt{header-title} & -                   & 本科页眉文字 \\
     \opt{author}       & \opt{author*}       & 作者姓名      \\
     \opt{cover-items}  & -                   & 自定义本科封面/扉页信息行 \\
@@ -416,6 +417,7 @@ key-value 的方式填写，如：
     每行使用 \cs{sysucoverrow}\marg{行名}\marg{内容} 添加，省略某行即可删除；设置为空可移除所有信息行。
     此配置不影响研究生/博士封面。
   \item \opt{cover-heading} 用于修改本科封面校徽下方的绿色标题；留空时仍使用学位类型对应的默认标题。
+  \item \opt{course-paper} 设为 |true| 时本科模式只生成外封，不生成学位论文用的内封；默认 |false| 保留原有本科双封面。
   \item \opt{header-title} 用于修改本科正文页眉，默认为“中山大学本科毕业论文”；此项与封面标题分别设置。
 \end{itemize}
 

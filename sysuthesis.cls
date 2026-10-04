@@ -1702,6 +1702,14 @@
   cover-heading = {
     name = cover@heading,
   },
+  course-paper = {
+    name = course@paper,
+    choices = {
+      true,
+      false,
+    },
+    default = false,
+  },
   header-title = {
     default = {中山大学本科毕业论文},
     name    = header@title,
@@ -2090,8 +2098,10 @@
   \ifsysu@degree@graduate
     \sysu@title@page@graduate@zh
   \else
-  	\sysu@cover
-    \sysu@title@page@bachelor
+    \sysu@cover
+    \ifsysu@course@paper@true\else
+      \sysu@title@page@bachelor
+    \fi
   \fi
   \cleardoublepage
   \restoregeometry

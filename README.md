@@ -1,10 +1,10 @@
 # 中山大学课程论文 LaTeX 模板
 
-本仓库将 `sysuthesis` 的本科页面样式整理为课程论文模板，正文沿用 LaTeX 论文常见的摘要、目录、章节、参考文献和附录结构。模板面向课程作业使用；如需提交正式本科、硕士或博士学位论文，请按学校当前规范调整并使用对应模板。
+本仓库将 `sysuthesis` 的本科页面样式整理为课程论文模板，采用单页封面和一份中文摘要，正文沿用 LaTeX 论文常见的目录、章节、参考文献和附录结构。模板面向课程作业使用；如需提交正式本科、硕士或博士学位论文，请按学校当前规范调整并使用对应模板。
 
 ## 快速开始
 
-1. 编辑 `sysusetup.tex`，填写中文标题、英文标题、作者、院系和学号。
+1. 编辑 `sysusetup.tex`，填写课程论文标题、作者、院系和学号。
 2. 修改 `cover-heading` 和 `header-title`，设置封面顶部标题与正文页眉。
 3. 在 `cover-items` 中编辑封面信息行。每行写成 `\sysucoverrow{行名}{内容}`；添加或删除这条命令即可增删信息行。
 4. 在 `docs/` 中编辑摘要和各章节，在 `reference.bib` 中维护参考文献。
@@ -15,7 +15,7 @@
 ```tex
 \sysusetup{
   title = {课程论文标题},
-  title* = {Course Paper Title},
+  course-paper = true,
   author = {作者姓名},
   department = {院系名称},
   student-id = {学号},
@@ -31,7 +31,7 @@
 }
 ```
 
-`cover-heading` 和 `header-title` 分别控制封面顶部标题与正文页眉。封面信息行可以使用任意标签和内容；不需要的行直接删除，需要新行时复制一条 `\sysucoverrow` 并修改标签和内容。
+`course-paper = true` 让本科页面样式只输出一个封面。正文只保留中文摘要。`cover-heading` 和 `header-title` 分别控制封面顶部标题与正文页眉。封面信息行可以使用任意标签和内容；不需要的行直接删除，需要新行时复制一条 `\sysucoverrow` 并修改标签和内容。
 
 ## 编译
 
