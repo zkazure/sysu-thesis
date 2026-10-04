@@ -1608,7 +1608,7 @@
     % 本科生要求除封面、扉页外，每面上部加页眉，
     % 用 5 号字（10.5 bp）标注“中山大学本科毕业论文”，居中；
     \def\sysu@hf@font{\fontsize{10.5bp}{17.5bp}\selectfont}
-    \fancyhead[C]{\sysu@hf@font 中山大学本科毕业论文}%
+    \fancyhead[C]{\sysu@hf@font\sysu@header@title}%
     \fancyfoot[C]{\sysu@hf@font\thepage}%
     \let\@mkboth\@gobbletwo
     \let\chaptermark\@gobble
@@ -1703,6 +1703,10 @@
   },
   cover-heading = {
     name = cover@heading,
+  },
+  header-title = {
+    default = {中山大学本科毕业论文},
+    name    = header@title,
   },
   author = {
     default = {作者姓名},

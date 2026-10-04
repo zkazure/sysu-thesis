@@ -6,10 +6,7 @@
     fontset=fandol,
     degree=bachelor
 ]{sysuthesis}
-% degree      = doctor | master | bachelor
-% degree-type = academic | professional
-% language    = chinese | english
-% fontset     = windows | mac | ubuntu | fandol
+% 使用本科生页面布局作为课程论文封面和页眉。
 
 % 加载宏包、全部的配置
 \input{sysusetup.tex}
@@ -18,7 +15,6 @@
 \begin{document}
 
 \maketitle
-\copyrightpage
 
 \frontmatter
 \input{docs/abstract.tex}
@@ -40,9 +36,5 @@
 
 \appendix
 \input{docs/complementary.tex}
-
-\backmatter
-\input{docs/acknowledgements.tex}
-\input{docs/achievements.tex}
 
 \end{document}
