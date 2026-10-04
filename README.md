@@ -4,25 +4,23 @@
 
 ## 快速开始
 
-1. 编辑 `sysusetup.tex`，填写课程论文标题、作者、院系和学号。
-2. 修改 `cover-heading` 和 `header-title`，设置封面顶部标题与正文页眉。
-3. 在 `cover-items` 中编辑封面信息行。每行写成 `\sysucoverrow{行名}{内容}`；添加或删除这条命令即可增删信息行。
+1. 编辑 `sysusetup.tex`，在 `cover-items` 中填写所有封面信息。
+2. 按需修改 `cover-heading` 和 `header-title`，设置封面顶部标题与正文页眉。
+3. 每行写成 `\sysucoverrow{行名}{内容}`；添加或删除这条命令即可增删信息行。
 4. 在 `docs/` 中编辑摘要和各章节，在 `reference.bib` 中维护参考文献。
 5. 编译生成 `main.pdf`。
 
-示例配置：
+文档类通过 `course-paper` 选项启用课程论文封面。示例配置：
 
 ```tex
+\documentclass[fontset=auto,degree=bachelor,oneside,course-paper]{sysuthesis}
+
 \sysusetup{
-  title = {课程论文标题},
-  course-paper = true,
-  author = {作者姓名},
-  department = {院系名称},
-  student-id = {学号},
   cover-heading = {课程论文},
   header-title = {课程论文},
   cover-items = {
     \sysucoverrow{课程名称}{课程名称}
+    \sysucoverrow{论文题目}{课程论文标题}
     \sysucoverrow{姓名}{作者姓名}
     \sysucoverrow{学号}{学号}
     \sysucoverrow{院系}{院系名称}
@@ -31,7 +29,7 @@
 }
 ```
 
-`course-paper = true` 让本科页面样式只输出一个封面。正文只保留中文摘要。`cover-heading` 和 `header-title` 分别控制封面顶部标题与正文页眉。封面信息行可以使用任意标签和内容；不需要的行直接删除，需要新行时复制一条 `\sysucoverrow` 并修改标签和内容。
+`course-paper` 让本科页面样式只输出一个封面，并把封面题目作为普通信息行显示。正文只保留中文摘要。`cover-heading` 和 `header-title` 分别控制封面顶部标题与正文页眉。所有封面信息都在 `cover-items` 中配置，不需要的行直接删除，需要新行时复制一条 `\sysucoverrow` 并修改标签和内容。
 
 ## 编译
 

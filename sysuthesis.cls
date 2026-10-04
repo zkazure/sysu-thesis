@@ -374,6 +374,7 @@
 \sysu@option@hook{degree}{%
   \sysu@set@graduate
 }
+\newif\ifsysu@coursepaper
 
 % 使用 \pkg{kvoptions} 提供的 key-value 接口，
 \SetupKeyvalOptions{
@@ -391,6 +392,7 @@
 \DeclareVoidOption{doctor}{\sysusetup{degree=doctor}}
 \DeclareVoidOption{master}{\sysusetup{degree=master}}
 \DeclareVoidOption{bachelor}{\sysusetup{degree=bachelor}}
+\DeclareVoidOption{course-paper}{\sysu@coursepapertrue}
 \DeclareVoidOption{chinese}{\sysusetup{language=chinese}}
 \DeclareVoidOption{english}{\sysusetup{language=english}}
 \DeclareVoidOption{academic}{\sysusetup{degree-type=academic}}
@@ -1702,14 +1704,6 @@
   cover-heading = {
     name = cover@heading,
   },
-  course-paper = {
-    name = course@paper,
-    choices = {
-      true,
-      false,
-    },
-    default = false,
-  },
   header-title = {
     default = {中山大学本科毕业论文},
     name    = header@title,
@@ -2016,8 +2010,11 @@
     \noindent\makebox[\linewidth]{ { \color{sysugreen} \rule{\paperwidth}{0.12cm} } }
     \noindent\makebox[\linewidth]{ { \color{sysugreen} \rule[0.8\baselineskip]{\paperwidth}{0.05cm} } }
 
-    \ \vskip 1.5cm%
-    
+    \ifsysu@coursepaper
+      \ \vskip 0.8cm%
+      % 课程论文题目由 cover-items 中的“论文题目”行显示。
+    \else
+      \ \vskip 1.5cm%
       \begin{tabular}{lp{140bp}lp{140bp}}%
 	        \zihao{2}\sffamily{题目:} &
 	          \multicolumn{3}{c}{%
@@ -2038,11 +2035,17 @@
 	        \cline{2-4}%
 	        \noalign{\vskip 24bp}%
 	  \end{tabular}%
-    \ \vskip 1.7cm
+      \ \vskip 1.7cm
+    \fi
     % 小三对应15pt
-    \renewcommand{\arraystretch}{2}
+    \ifsysu@coursepaper
+      \renewcommand{\arraystretch}{1.25}%
+      \fontsize{13}{20}\heiti\selectfont
+    \else
+      \renewcommand{\arraystretch}{2}%
+      \fontsize{15}{24}\heiti\selectfont
+    \fi
   % \setlength\arrayrulewidth{1.4pt}
-    \fontsize{15}{24}\heiti\selectfont
     \setlength\sysu@cover@label@width{2.2cm}%
     \setlength\sysu@cover@value@width{8cm}%
     \begin{tabular}{cc}
@@ -2099,7 +2102,7 @@
     \sysu@title@page@graduate@zh
   \else
     \sysu@cover
-    \ifsysu@course@paper@true\else
+    \ifsysu@coursepaper\else
       \sysu@title@page@bachelor
     \fi
   \fi
